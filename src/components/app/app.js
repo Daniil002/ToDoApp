@@ -25,6 +25,20 @@ class App extends Component {
     ],
   };
 
+  addTask = (description) => {
+    const newTask = {
+      id: Date.now(), // Уникальный ID
+      description,
+      created: 'just now', // Можно добавить точное время
+      completed: false, // Пока задача не выполнена
+    };
+  
+    this.setState(({ tasks }) => ({
+      tasks: [...tasks, newTask], // Добавляем новую задачу в массив
+    }));
+  };
+  
+
   deleteItem = (id) => {
     this.setState(({ tasks }) => {
       const newTasks = tasks.filter(task => task.id !== id);
@@ -37,7 +51,7 @@ class App extends Component {
     const { tasks } = this.state;
     return (
       <section className="todoapp">
-        <NewTaskForm />
+        <NewTaskForm onTaskAdded={this.addTask} />
         <section className="main">
           <TaskList
           tasks={tasks}
