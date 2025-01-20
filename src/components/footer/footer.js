@@ -1,14 +1,15 @@
-import React from "react";
-import TasksFilter from "../task-filter/task-filter.js";
-import './footer.css'
+import React from 'react';
+import TasksFilter from '../task-filter/task-filter.js';
+import './footer.css';
 
-
-function Footer() {
+function Footer({ activeCount, filter, onFilterChange, onClearCompleted }) {
   return (
     <footer className="footer">
-      <span className="todo-count">1 items left</span>
-      <TasksFilter />
-      <button className="clear-completed">Clear completed</button>
+      <span className="todo-count">{activeCount} items left</span>
+      <TasksFilter filter={filter} onFilterChange={onFilterChange} />
+      <button className="clear-completed" onClick={onClearCompleted}>
+        Clear completed
+      </button>
     </footer>
   );
 }
